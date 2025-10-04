@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.preference.PreferenceCategory
+        android:title="General">
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="pref_dark_mode"
+            android:title="Dark mode"
+            android:summary="Use dark theme" />
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:title="Notifications">
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="pref_daily_reminder"
+            android:title="Daily reminder"
+            android:summary="Send a daily reminder notification" />
+        <androidx.preference.Preference
+            android:key="pref_reminder_time"
+            android:title="Reminder time"
+            android:summary="09:00"
+            android:enabled="false" />
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:title="Account">
+        <androidx.preference.Preference
+            android:key="pref_sign_out"
+            android:title="Sign out" />
+    </androidx.preference.PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>
