@@ -16,17 +16,17 @@
 
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.keagan.plandemic.ui.CalendarFragment"
+        android:name="com.keagan.plandemic.ui.calendar.CalendarFragment"
         android:label="Calendar" />
 
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.keagan.plandemic.ui.NotesFragment"
+        android:name="com.keagan.plandemic.ui.notes.NotesFragment"
         android:label="Notes" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.keagan.plandemic.ui.SettingsFragment"
+        android:name="com.keagan.plandemic.ui.settings.SettingsFragment"
         android:label="Settings" />
 
 </navigation>

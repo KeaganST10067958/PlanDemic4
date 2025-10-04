@@ -1,4 +1,4 @@
-package com.keagan.plandemic.ui
+package com.keagan.plandemic.ui.settings
 
 import android.content.Intent
 import android.os.Bundle

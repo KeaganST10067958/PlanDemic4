@@ -12,14 +12,26 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.keagan.plandemic.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_todo"
+        android:name="com.keagan.plandemic.ui.todo.TodoFragment"
+        android:label="@string/title_todo"
+        tools:layout="@layout/fragment_todo" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.keagan.plandemic.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_calendar"
+        android:name="com.keagan.plandemic.ui.calendar.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar" />
+
+    <fragment
+        android:id="@+id/navigation_notes"
+        android:name="com.keagan.plandemic.ui.notes.NotesFragment"
+        android:label="@string/title_notes"
+        tools:layout="@layout/fragment_notes" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.keagan.plandemic.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
