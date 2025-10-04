@@ -1,14 +1,14 @@
 package com.keagan.plandemic.data.remote
 
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory   // 👈 add this
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ApiClient {
-    // Change the port after you run the server (Step 5) — see the console for the actual port
-    private const val BASE_URL = "http://10.0.2.2:5198/"
+    private const val BASE_URL = "http://10.0.2.2:5043/"  // keep your port
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -17,7 +17,9 @@ object ApiClient {
         .addInterceptor(logging)
         .build()
 
-    private val moshi = Moshi.Builder().build()
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())                  // 👈 REQUIRED for Kotlin data classes
+        .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
