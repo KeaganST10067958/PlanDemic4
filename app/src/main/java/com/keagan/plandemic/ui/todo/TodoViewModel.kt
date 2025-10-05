@@ -1,34 +1,26 @@
 package com.keagan.plandemic.ui.todo
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.keagan.plandemic.data.TodoRepository
+import com.keagan.plandemic.data.local.AppDatabase
+import com.keagan.plandemic.data.local.TodoEntity
+import kotlinx.coroutines.launch
 
-data class TodoItem(
-    val id: Long,
-    val text: String,
-    val done: Boolean
-)
+class TodoViewModel(app: Application) : AndroidViewModel(app) {
+    private val repo = TodoRepository(AppDatabase.get(app).todoDao())
 
-class TodoViewModel : ViewModel() {
+    val items = repo.items.asLiveData()
 
-    private val _items = MutableLiveData<List<TodoItem>>(emptyList())
-    val items: LiveData<List<TodoItem>> = _items
+    fun add(text: String) = viewModelScope.launch { repo.add(text) }
 
-    private var nextId = 1L
-
-    fun add(text: String) {
-        val newItem = TodoItem(nextId++, text, false)
-        _items.value = (_items.value ?: emptyList()) + newItem
+    fun toggle(item: TodoEntity) = viewModelScope.launch {
+        repo.toggle(item.id, item.isDone, item.text)
     }
 
-    fun toggle(id: Long) {
-        _items.value = _items.value?.map { item ->
-            if (item.id == id) item.copy(done = !item.done) else item
-        }
-    }
+    fun delete(id: Long) = viewModelScope.launch { repo.delete(id) }
 
-    fun delete(id: Long) {
-        _items.value = _items.value?.filterNot { it.id == id }
-    }
+    fun clearDone() = viewModelScope.launch { repo.deleteDone() }
 }

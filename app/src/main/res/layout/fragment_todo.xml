@@ -5,23 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/inputTodo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Add a task…" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add" />
+        <EditText
+            android:id="@+id/inputTodo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Add a task"/>
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
+        android:id="@+id/rvTodos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1" />
+        android:layout_marginTop="12dp"
+        android:layout_weight="1"/>
 
+    <Button
+        android:id="@+id/btnClearDone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear completed"/>
 </LinearLayout>

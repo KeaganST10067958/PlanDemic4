@@ -1,24 +1,22 @@
 package com.keagan.plandemic.data
 
-import android.content.Context
-import com.keagan.plandemic.data.local.AppDatabase
-import com.keagan.plandemic.data.local.Todo
+import com.keagan.plandemic.data.local.TodoDao
+import com.keagan.plandemic.data.local.TodoEntity
 import kotlinx.coroutines.flow.Flow
 
-class TodoRepository(context: Context) {
-    private val dao = AppDatabase.get(context).todoDao()
+class TodoRepository(private val dao: TodoDao) {
+    val items: Flow<List<TodoEntity>> = dao.observeAll()
 
-    val todos: Flow<List<Todo>> = dao.observeAll()
-
-    suspend fun add(title: String) {
-        if (title.isNotBlank()) dao.insert(Todo(title = title.trim()))
+    suspend fun add(text: String) {
+        if (text.isBlank()) return
+        dao.insert(TodoEntity(text = text.trim()))
     }
 
-    suspend fun toggle(todo: Todo) {
-        dao.update(todo.copy(done = !todo.done))
+    suspend fun toggle(id: Long, current: Boolean, text: String) {
+        dao.update(TodoEntity(id = id, isDone = !current, text = text))
     }
 
-    suspend fun remove(todo: Todo) {
-        dao.delete(todo)
-    }
+    suspend fun delete(id: Long) = dao.deleteById(id)
+
+    suspend fun deleteDone() = dao.deleteAllDone()
 }

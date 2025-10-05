@@ -79,6 +79,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
 
 // Retrofit + Moshi + OkHttp
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
@@ -88,4 +89,8 @@ dependencies {
 
     // Retrofit + Gson
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
 }
