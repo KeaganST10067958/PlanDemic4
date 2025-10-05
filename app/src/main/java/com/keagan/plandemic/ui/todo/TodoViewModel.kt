@@ -1,22 +1,34 @@
 package com.keagan.plandemic.ui.todo
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
-import com.keagan.plandemic.data.TodoRepository
-import com.keagan.plandemic.data.local.Todo
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class TodoViewModel(app: Application) : AndroidViewModel(app) {
-    private val repo = TodoRepository(app)
+data class TodoItem(
+    val id: Long,
+    val text: String,
+    val done: Boolean
+)
 
-    val todos: StateFlow<List<Todo>> =
-        repo.observeAll().stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+class TodoViewModel : ViewModel() {
 
-    fun add(title: String) = viewModelScope.launch { if (title.isNotBlank()) repo.add(title.trim()) }
-    fun toggle(todo: Todo, done: Boolean) = viewModelScope.launch { repo.toggle(todo.id, done) }
-    fun delete(todo: Todo) = viewModelScope.launch { repo.delete(todo) }
+    private val _items = MutableLiveData<List<TodoItem>>(emptyList())
+    val items: LiveData<List<TodoItem>> = _items
+
+    private var nextId = 1L
+
+    fun add(text: String) {
+        val newItem = TodoItem(nextId++, text, false)
+        _items.value = (_items.value ?: emptyList()) + newItem
+    }
+
+    fun toggle(id: Long) {
+        _items.value = _items.value?.map { item ->
+            if (item.id == id) item.copy(done = !item.done) else item
+        }
+    }
+
+    fun delete(id: Long) {
+        _items.value = _items.value?.filterNot { it.id == id }
+    }
 }

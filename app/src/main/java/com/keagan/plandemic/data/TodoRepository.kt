@@ -8,8 +8,17 @@ import kotlinx.coroutines.flow.Flow
 class TodoRepository(context: Context) {
     private val dao = AppDatabase.get(context).todoDao()
 
-    fun observeAll(): Flow<List<Todo>> = dao.observeAll()
-    suspend fun add(title: String) = dao.insert(Todo(title = title))
-    suspend fun toggle(id: Long, done: Boolean) = dao.setDone(id, done)
-    suspend fun delete(todo: Todo) = dao.delete(todo)
+    val todos: Flow<List<Todo>> = dao.observeAll()
+
+    suspend fun add(title: String) {
+        if (title.isNotBlank()) dao.insert(Todo(title = title.trim()))
+    }
+
+    suspend fun toggle(todo: Todo) {
+        dao.update(todo.copy(done = !todo.done))
+    }
+
+    suspend fun remove(todo: Todo) {
+        dao.delete(todo)
+    }
 }

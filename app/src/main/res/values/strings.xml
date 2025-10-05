@@ -2,6 +2,7 @@
     <string name="streak_fmt">Streak: %1$d</string>
     <string name="title_home">Home</string>
     <string name="title_todo">To-Do</string>
+    <string name="delete">Delete</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_notes">Notes</string>
     <string name="title_settings">Settings</string>
