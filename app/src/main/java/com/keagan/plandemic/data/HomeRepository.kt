@@ -1,16 +1,17 @@
 package com.keagan.plandemic.data
 
-import com.keagan.plandemic.data.remote.ApiClient
-import com.keagan.plandemic.data.remote.QuoteApi
-import com.keagan.plandemic.data.remote.StreakApi
-import com.keagan.plandemic.data.remote.dto.QuoteDto
-import com.keagan.plandemic.data.remote.dto.StreakDto
+import com.keagan.plandemic.data.remote.ApiService
+import com.keagan.plandemic.data.remote.QuoteDto
+import com.keagan.plandemic.data.remote.StreakDto
 
-class HomeRepository {
-    private val quoteApi = ApiClient.create(QuoteApi::class.java)
-    private val streakApi = ApiClient.create(StreakApi::class.java)
+class HomeRepository(private val api: ApiService) {
 
-    suspend fun fetchQuote(): QuoteDto = quoteApi.getToday()
-    suspend fun fetchStreak(): StreakDto = streakApi.get()
-    suspend fun tickStreak(): StreakDto = streakApi.tick()
+    suspend fun getRandomQuote(): QuoteDto =
+        api.getRandomQuote()
+
+    suspend fun getTodayStreak(): StreakDto =
+        api.getToday()
+
+    suspend fun tickToday(): StreakDto =
+        api.tick()
 }
