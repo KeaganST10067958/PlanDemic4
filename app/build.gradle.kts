@@ -75,4 +75,17 @@ dependencies {
 
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
+    // Coroutines + Lifecycle
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+
+// Retrofit + Moshi + OkHttp
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+
+    // Retrofit + Gson
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 }

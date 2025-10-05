@@ -6,7 +6,7 @@ import retrofit2.http.POST
 
 interface StreakApi {
     @GET("api/streak")
-    suspend fun get(): StreakDto
+    suspend fun getStreak(): StreakDto
 
     @POST("api/streak/tick")
     suspend fun tick(): StreakDto

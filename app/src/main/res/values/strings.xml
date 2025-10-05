@@ -1,4 +1,5 @@
 <resources>
+    <string name="streak_fmt">Streak: %1$d</string>
     <string name="title_home">Home</string>
     <string name="title_todo">To-Do</string>
     <string name="title_calendar">Calendar</string>
